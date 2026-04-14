@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rig Church Miami</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+ --coral: #E05A35;
+ --navy: #2B3A6B;
+ --navy-dark: #1a2548;
+ --navy-light: #3d5080;
+ --cream: #FAF8F5;
+ --warm-gray: #F2F0ED;
+ --text: #1C1C1C;
+ --text-muted: #6B6560;
+ --white: #ffffff;
+ --border: rgba(43,58,107,0.12);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Montserrat', sans-serif; color: var(--text); background: var(--white); overflow-x: hidden; }
+
+/* ── NAV ── */
+.nav {
+ position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+ background: rgba(27,37,72,0.97); backdrop-filter: blur(12px);
+ padding: 0 24px; height: 64px;
+ display: flex; align-items: center; justify-content: space-between;
+ border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.nav-logo-arc {
+ width: 36px; height: 36px; position: relative;
+ background: var(--coral); border-radius: 50%;
+ display: flex; align-items: center; justify-content: center;
+}
+.nav-logo-arc span { color: white; font-weight: 900; font-size: 16px; line-height: 1; }
+.nav-logo-text { color: white; font-size: 14px; font-weight: 700; letter-spacing: 0.5px; line-height: 1; }
+.nav-logo-text small { display: block; font-size: 9px; font-weight: 500; letter-spacing: 2px; color: var(--coral); text-transform: uppercase; margin-top: 1px; }
+.nav-links { display: flex; align-items: center; gap: 4px; }
+.nav-links a {
+ color: rgba(255,255,255,0.75); text-decoration: none;
+ font-size: 11px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase;
+ padding: 8px 10px; border-radius: 6px;
+ transition: all 0.2s; cursor: pointer;
+}
+.nav-links a:hover, .nav-links a.active { color: white; background: rgba(255,255,255,0.1); }
+.nav-cta {
+ background: var(--coral); color: white !important;
+ border-radius: 6px !important; padding: 8px 16px !important;
+}
+.nav-cta:hover { background: #c44e2b !important; }
+.nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+.nav-hamburger span { display: block; width: 22px; height: 2px; background: white; border-radius: 2px; transition: 0.3s; }
+.mobile-menu {
+ display: none; position: fixed; top: 64px; left: 0; right: 0;
+ background: var(--navy-dark); z-index: 999; padding: 16px 24px 24px;
+ flex-direction: column; gap: 4px;
+ border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.mobile-menu a {
+ color: rgba(255,255,255,0.8); text-decoration: none; font-size: 13px;
+ font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase;
+ padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+ cursor: pointer; display: block;
+}
+.mobile-menu a:last-child { border-bottom: none; }
+.mobile-menu.open { display: flex; }
+
+/* ── PAGES ── */
+.page { display: none; padding-top: 64px; }
+.page.active { display: block; }
+
+/* ── HOME ── */
+.hero {
+ min-height: 100svh; background: var(--navy-dark);
+ display: flex; align-items: center;
+ position: relative; overflow: hidden;
+}
+.hero-bg {
+ position: absolute; inset: 0;
+ background: linear-gradient(135deg, #0d1529 0%, #1a2548 40%, #2B3A6B 100%);
+}
+.hero-pattern {
+ position: absolute; inset: 0; opacity: 0.04;
+ background-image: repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(255,255,255,0.5) 60px, rgba(255,255,255,0.5) 61px),
+ repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(255,255,255,0.5) 60px, rgba(255,255,255,0.5) 61px);
+}
+.hero-accent {
+ position: absolute; right: -100px; top: 50%; transform: translateY(-50%);
+ width: 600px; height: 600px; border-radius: 50%;
+ background: radial-gradient(circle, rgba(224,90,53,0.15) 0%, transparent 70%);
+}
+.hero-content { position: relative; z-index: 2; padding: 60px 24px; max-width: 680px; margin: 0 auto; }
+.hero-eyebrow {
+ display: inline-flex; align-items: center; gap: 8px;
+ background: rgba(224,90,53,0.15); border: 1px solid rgba(224,90,53,0.3);
+ color: #ff8a65; font-size: 10px; font-weight: 700; letter-spacing: 2px;
+ text-transform: uppercase; padding: 6px 14px; border-radius: 100px;
+ margin-bottom: 24px;
+}
+.hero-title {
+ font-size: clamp(36px, 9vw, 68px); font-weight: 900; color: white;
+ line-height: 1.05; letter-spacing: -1px; margin-bottom: 20px;
+}
+.hero-title em { color: var(--coral); font-style: normal; }
+.hero-subtitle {
+ font-size: 16px; color: rgba(255,255,255,0.65); line-height: 1.7;
+ font-weight: 400; margin-bottom: 36px; max-width: 500px;
+}
+.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn-primary {
+ background: var(--coral); color: white; border: none;
+ padding: 14px 28px; border-radius: 8px; font-family: 'Montserrat', sans-serif;
+ font-size: 13px; font-weight: 700; letter-spacing: 0.5px;
+ cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+ transition: all 0.2s;
+}
+.btn-primary:hover { background: #c44e2b; transform: translateY(-1px); }
+.btn-outline {
+ background: transparent; color: white;
+ border: 1.5px solid rgba(255,255,255,0.3);
+ padding: 14px 28px; border-radius: 8px; font-family: 'Montserrat', sans-serif;
+ font-size: 13px; font-weight: 700; letter-spacing: 0.5px;
+ cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+ transition: all 0.2s;
+}
+.btn-outline:hover { border-color: white; background: rgba(255,255,255,0.08); }
+
+.info-bar {
+ background: var(--coral); padding: 14px 24px;
+ display: flex; align-items: center; justify-content: center;
+ gap: 28px; flex-wrap: wrap;
+}
+.info-item { display: flex; align-items: center; gap: 8px; color: white; }
+.info-item svg { opacity: 0.8; flex-shrink: 0; }
+.info-item span { font-size: 12px; font-weight: 600; letter-spacing: 0.3px; }
+.info-sep { width: 1px; height: 20px; background: rgba(255,255,255,0.3); }
+
+/* ── SECTION BASICS ── */
+.section { padding: 72px 24px; }
+.section-alt { background: var(--cream); }
+.section-dark { background: var(--navy-dark); color: white; }
+.container { max-width: 1100px; margin: 0 auto; }
+.section-label {
+ font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+ color: var(--coral); margin-bottom: 12px;
+}
+.section-title {
+ font-size: clamp(26px, 5vw, 44px); font-weight: 900; line-height: 1.1;
+ letter-spacing: -0.5px; margin-bottom: 16px;
+}
+.section-subtitle {
+ font-size: 15px; color: var(--text-muted); line-height: 1.7;
+ max-width: 540px; font-weight: 400;
+}
+
+/* ── ABOUT / PILLARS ── */
+.pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 48px; }
+.pillar {
+ background: white; border: 1px solid var(--border);
+ border-radius: 12px; padding: 28px 24px;
+ transition: transform 0.2s, box-shadow 0.2s;
+}
+.pillar:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(43,58,107,0.12); }
+.pillar-icon {
+ width: 48px; height: 48px; background: var(--navy);
+ border-radius: 10px; display: flex; align-items: center; justify-content: center;
+ margin-bottom: 18px; font-size: 22px;
+}
+.pillar h3 { font-size: 18px; font-weight: 800; color: var(--navy); margin-bottom: 8px; }
+.pillar p { font-size: 14px; color: var(--text-muted); line-height: 1.65; font-weight: 400; }
+
+/* ── SERMONS ── */
+.sermons-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 40px; }
+.sermon-card {
+ background: white; border: 1px solid var(--border); border-radius: 12px;
+ overflow: hidden; transition: transform 0.2s, box-shadow 0.2s;
+}
+.sermon-card:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(43,58,107,0.1); }
+.sermon-thumb {
+ height: 140px; background: var(--navy);
+ display: flex; align-items: center; justify-content: center;
+ font-size: 40px; position: relative;
+}
+.play-btn {
+ position: absolute; width: 48px; height: 48px; background: var(--coral);
+ border-radius: 50%; display: flex; align-items: center; justify-content: center;
+}
+.play-btn::after { content: ''; border-left: 16px solid white; border-top: 10px solid transparent; border-bottom: 10px solid transparent; margin-left: 3px; }
+.sermon-info { padding: 20px; }
+.sermon-series { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; color: var(--coral); text-transform: uppercase; margin-bottom: 6px; }
+.sermon-title { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 6px; line-height: 1.3; }
+.sermon-meta { font-size: 12px; color: var(--text-muted); font-weight: 500; }
+
+/* ── PLAN A VISIT ── */
+.visit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; margin-top: 40px; }
+.visit-info { }
+.visit-detail {
+ display: flex; align-items: flex-start; gap: 16px;
+ padding: 18px 0; border-bottom: 1px solid var(--border);
+}
+.visit-detail:last-child { border-bottom: none; }
+.visit-icon {
+ width: 40px; height: 40px; background: rgba(224,90,53,0.1);
+ border-radius: 8px; display: flex; align-items: center; justify-content: center;
+ flex-shrink: 0; font-size: 18px;
+}
+.visit-detail h4 { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 3px; letter-spacing: 0.3px; }
+.visit-detail p { font-size: 13px; color: var(--text-muted); line-height: 1.5; font-weight: 400; }
+.map-placeholder {
+ background: var(--navy); border-radius: 16px; height: 320px;
+ display: flex; flex-direction: column; align-items: center; justify-content: center;
+ color: rgba(255,255,255,0.5); gap: 12px; font-size: 14px; font-weight: 500;
+ position: relative; overflow: hidden;
+}
+.map-placeholder::before {
+ content: ''; position: absolute; inset: 0;
+ background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+}
+.map-placeholder > * { position: relative; z-index: 1; }
+.map-placeholder svg { opacity: 0.4; }
+
+/* ── GIVE ── */
+.give-banner {
+ background: linear-gradient(135deg, var(--navy-dark), var(--navy));
+ border-radius: 16px; padding: 48px 40px;
+ display: flex; align-items: center; justify-content: space-between;
+ gap: 24px; flex-wrap: wrap; margin-top: 0;
+}
+.give-banner h2 { font-size: 28px; font-weight: 900; color: white; margin-bottom: 10px; }
+.give-banner p { color: rgba(255,255,255,0.65); font-size: 15px; line-height: 1.6; max-width: 440px; }
+
+/* ── FOOTER ── */
+.footer {
+ background: #0f1729; color: rgba(255,255,255,0.6);
+ padding: 48px 24px 28px;
+}
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+.footer h4 { color: white; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 16px; }
+.footer p, .footer a { font-size: 13px; line-height: 1.8; color: rgba(255,255,255,0.55); text-decoration: none; display: block; }
+.footer a:hover { color: white; }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+.footer-bottom span { font-size: 12px; }
+
+/* ── LEGACY PAGE ── */
+.legacy-hero {
+ background: linear-gradient(135deg, var(--navy-dark) 0%, #2B3A6B 100%);
+ padding: 80px 24px 60px; text-align: center;
+}
+.legacy-hero h1 { font-size: clamp(32px, 7vw, 56px); font-weight: 900; color: white; margin-bottom: 16px; letter-spacing: -1px; }
+.legacy-hero p { font-size: 16px; color: rgba(255,255,255,0.65); max-width: 520px; margin: 0 auto; line-height: 1.7; }
+
+.initiative-cards { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 48px; }
+.initiative-card {
+ background: white; border: 1px solid var(--border); border-radius: 16px;
+ overflow: hidden; display: grid; grid-template-columns: auto 1fr;
+}
+.initiative-accent {
+ width: 6px; flex-shrink: 0;
+}
+.initiative-accent.active { background: var(--coral); }
+.initiative-accent.coming { background: var(--navy); }
+.initiative-body { padding: 28px 28px 28px 24px; }
+.initiative-tag {
+ display: inline-flex; align-items: center; gap: 6px;
+ font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+ padding: 4px 10px; border-radius: 100px; margin-bottom: 12px;
+}
+.initiative-tag.active { background: rgba(224,90,53,0.1); color: var(--coral); }
+.initiative-tag.coming { background: rgba(43,58,107,0.1); color: var(--navy); }
+.initiative-card h3 { font-size: 22px; font-weight: 800; color: var(--navy); margin-bottom: 10px; line-height: 1.2; }
+.initiative-card p { font-size: 15px; color: var(--text-muted); line-height: 1.7; font-weight: 400; margin-bottom: 20px; }
+.initiative-card .btn-primary { font-size: 12px; padding: 10px 20px; }
+
+.legacy-quote {
+ background: var(--coral); border-radius: 16px; padding: 40px;
+ text-align: center; margin-top: 56px;
+}
+.legacy-quote blockquote {
+ font-family: 'Lora', serif; font-size: clamp(18px, 3vw, 24px);
+ color: white; font-style: italic; line-height: 1.5; margin-bottom: 12px;
+}
+.legacy-quote cite { color: rgba(255,255,255,0.7); font-size: 12px; font-style: normal; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+
+/* ── EVENTS PAGE ── */
+.events-hero {
+ background: linear-gradient(135deg, #0d1529 0%, var(--navy) 100%);
+ padding: 80px 24px 60px; text-align: center;
+}
+.events-hero h1 { font-size: clamp(32px, 7vw, 56px); font-weight: 900; color: white; margin-bottom: 16px; letter-spacing: -1px; }
+.events-hero p { font-size: 16px; color: rgba(255,255,255,0.65); max-width: 480px; margin: 0 auto; line-height: 1.7; }
+
+.events-grid { display: grid; grid-template-columns: 1fr; gap: 32px; margin-top: 48px; }
+.event-featured {
+ background: white; border: 1px solid var(--border); border-radius: 20px;
+ overflow: hidden;
+}
+.event-banner {
+ background: linear-gradient(135deg, #4a1942 0%, #2d0f2a 40%, #1a0a18 100%);
+ padding: 48px 40px; position: relative; overflow: hidden;
+}
+.event-banner::before {
+ content: ''; position: absolute; right: -60px; top: -60px;
+ width: 300px; height: 300px; border-radius: 50%;
+ background: radial-gradient(circle, rgba(180,80,160,0.2) 0%, transparent 70%);
+}
+.event-banner-label {
+ font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+ color: rgba(255,220,255,0.6); margin-bottom: 12px;
+}
+.event-banner-title {
+ font-size: clamp(28px, 6vw, 48px); font-weight: 900; color: white;
+ line-height: 1.1; letter-spacing: -1px; margin-bottom: 8px;
+ font-family: 'Lora', serif; font-style: italic;
+}
+.event-banner-sub { font-size: 14px; color: rgba(255,255,255,0.55); font-style: normal; font-family: 'Montserrat', sans-serif; }
+.event-date-badge {
+ position: absolute; right: 40px; top: 50%; transform: translateY(-50%);
+ background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
+ border-radius: 12px; padding: 16px 20px; text-align: center; backdrop-filter: blur(8px);
+}
+.event-date-month { font-size: 11px; font-weight: 700; letter-spacing: 2px; color: rgba(255,220,255,0.7); text-transform: uppercase; }
+.event-date-days { font-size: 32px; font-weight: 900; color: white; line-height: 1; margin: 4px 0; }
+.event-date-year { font-size: 11px; color: rgba(255,255,255,0.5); font-weight: 500; }
+
+.event-details { padding: 32px 40px; }
+.event-meta-row { display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 20px; }
+.event-meta-item { display: flex; align-items: center; gap: 8px; }
+.event-meta-item svg { color: var(--coral); flex-shrink: 0; }
+.event-meta-item span { font-size: 13px; color: var(--text-muted); font-weight: 500; }
+.event-description { font-size: 15px; color: var(--text-muted); line-height: 1.7; font-weight: 400; margin-bottom: 24px; }
+.event-highlights { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 28px; }
+.event-highlight {
+ background: var(--cream); border-radius: 10px; padding: 14px 16px; text-align: center;
+}
+.event-highlight .icon { font-size: 20px; margin-bottom: 6px; }
+.event-highlight span { font-size: 11px; font-weight: 600; color: var(--navy); letter-spacing: 0.3px; display: block; }
+
+/* ── MEDIA PAGE ── */
+.media-hero {
+ background: linear-gradient(135deg, #0d1529 0%, #1a2548 100%);
+ padding: 80px 24px 60px; text-align: center;
+}
+.media-hero h1 { font-size: clamp(32px, 7vw, 56px); font-weight: 900; color: white; margin-bottom: 16px; letter-spacing: -1px; }
+.media-hero p { font-size: 16px; color: rgba(255,255,255,0.65); max-width: 480px; margin: 0 auto; line-height: 1.7; }
+
+.media-filter { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 32px; }
+.filter-btn {
+ padding: 8px 18px; border-radius: 100px; font-family: 'Montserrat', sans-serif;
+ font-size: 12px; font-weight: 700; letter-spacing: 0.5px; cursor: pointer;
+ border: 1.5px solid var(--border); background: white; color: var(--text-muted);
+ transition: all 0.2s;
+}
+.filter-btn.active, .filter-btn:hover { background: var(--navy); color: white; border-color: var(--navy); }
+
+.media-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 32px; }
+.media-embed { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; }
+.media-embed iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+.media-card {
+ background: white; border: 1px solid var(--border); border-radius: 12px;
+ overflow: hidden; transition: transform 0.2s, box-shadow 0.2s;
+ cursor: pointer;
+}
+.media-card:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(43,58,107,0.1); }
+.media-thumb {
+ height: 160px; background: var(--navy);
+ display: flex; align-items: center; justify-content: center;
+ position: relative;
+}
+.media-thumb.type-2 { background: linear-gradient(135deg, #1a2548, #2B3A6B); }
+.media-thumb.type-3 { background: linear-gradient(135deg, #2d1530, #4a1942); }
+.media-thumb.type-4 { background: linear-gradient(135deg, #1a3020, #2d5035); }
+.media-play {
+ width: 52px; height: 52px; background: rgba(255,255,255,0.15);
+ border: 2px solid rgba(255,255,255,0.4); border-radius: 50%;
+ display: flex; align-items: center; justify-content: center;
+ backdrop-filter: blur(4px);
+}
+.media-play::after { content: ''; border-left: 18px solid white; border-top: 11px solid transparent; border-bottom: 11px solid transparent; margin-left: 4px; }
+.media-type-badge {
+ position: absolute; top: 12px; left: 12px;
+ background: rgba(0,0,0,0.5); backdrop-filter: blur(8px);
+ color: white; font-size: 10px; font-weight: 700; letter-spacing: 1px;
+ padding: 4px 10px; border-radius: 100px; text-transform: uppercase;
+}
+.media-info { padding: 18px; }
+.media-series { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; color: var(--coral); text-transform: uppercase; margin-bottom: 5px; }
+.media-title { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 5px; line-height: 1.3; }
+.media-meta { font-size: 12px; color: var(--text-muted); font-weight: 500; }
+
+.spotify-banner {
+ background: linear-gradient(135deg, #1a2548, #0d1529);
+ border-radius: 16px; padding: 32px; margin-top: 40px;
+ display: flex; align-items: center; gap: 24px; flex-wrap: wrap;
+}
+.spotify-icon { font-size: 48px; flex-shrink: 0; }
+.spotify-text h3 { color: white; font-size: 20px; font-weight: 800; margin-bottom: 6px; }
+.spotify-text p { color: rgba(255,255,255,0.6); font-size: 14px; line-height: 1.5; }
+.spotify-btn {
+ margin-left: auto; background: #1DB954; color: white;
+ padding: 12px 24px; border-radius: 100px; font-family: 'Montserrat', sans-serif;
+ font-size: 13px; font-weight: 700; text-decoration: none; white-space: nowrap;
+ display: inline-block;
+}
+
+/* ── CONTACT PAGE ── */
+.contact-hero {
+ background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 100%);
+ padding: 80px 24px 60px; text-align: center;
+}
+.contact-hero h1 { font-size: clamp(32px, 7vw, 56px); font-weight: 900; color: white; margin-bottom: 16px; letter-spacing: -1px; }
+.contact-hero p { font-size: 16px; color: rgba(255,255,255,0.65); max-width: 480px; margin: 0 auto; line-height: 1.7; }
+
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 48px; align-items: start; }
+.contact-info-cards { display: flex; flex-direction: column; gap: 16px; }
+.contact-card {
+ background: white; border: 1px solid var(--border); border-radius: 12px; padding: 24px;
+ display: flex; align-items: flex-start; gap: 16px;
+ transition: transform 0.2s;
+}
+.contact-card:hover { transform: translateY(-2px); }
+.contact-card-icon {
+ width: 44px; height: 44px; background: var(--navy);
+ border-radius: 10px; display: flex; align-items: center; justify-content: center;
+ flex-shrink: 0; font-size: 20px;
+}
+.contact-card h4 { font-size: 12px; font-weight: 700; color: var(--coral); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+.contact-card a, .contact-card p { font-size: 14px; color: var(--text); font-weight: 500; text-decoration: none; line-height: 1.5; }
+.contact-card a:hover { color: var(--coral); }
+
+.contact-form-wrap {
+ background: white; border: 1px solid var(--border); border-radius: 16px; padding: 32px;
+}
+.contact-form-wrap h3 { font-size: 20px; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
+.contact-form-wrap p { font-size: 14px; color: var(--text-muted); margin-bottom: 24px; line-height: 1.6; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-group { margin-bottom: 16px; }
+.form-group label { display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; color: var(--navy); margin-bottom: 6px; text-transform: uppercase; }
+.form-group input, .form-group textarea, .form-group select {
+ width: 100%; padding: 12px 14px; border: 1.5px solid var(--border); border-radius: 8px;
+ font-family: 'Montserrat', sans-serif; font-size: 14px; color: var(--text);
+ background: var(--cream); outline: none; transition: border-color 0.2s;
+ -webkit-appearance: none;
+}
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--navy); background: white; }
+.form-group textarea { resize: vertical; min-height: 120px; }
+.form-group select { cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B6560' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
+.form-submit { width: 100%; padding: 14px; background: var(--coral); color: white; border: none; border-radius: 8px; font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700; cursor: pointer; transition: background 0.2s; letter-spacing: 0.3px; }
+.form-submit:hover { background: #c44e2b; }
+
+.contact-map-section {
+ margin-top: 64px; background: var(--cream); border-radius: 16px; overflow: hidden;
+ border: 1px solid var(--border);
+}
+.contact-map-info { padding: 32px; }
+.contact-map-info h3 { font-size: 22px; font-weight: 800; color: var(--navy); margin-bottom: 8px; }
+.contact-map-info p { font-size: 14px; color: var(--text-muted); line-height: 1.6; margin-bottom: 16px; }
+.directions-btn {
+ display: inline-flex; align-items: center; gap: 8px;
+ background: var(--navy); color: white; padding: 11px 20px; border-radius: 8px;
+ font-size: 12px; font-weight: 700; text-decoration: none; letter-spacing: 0.5px;
+ transition: background 0.2s;
+}
+.directions-btn:hover { background: var(--navy-light); }
+.contact-service-times { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 24px; }
+.service-time { display: flex; flex-direction: column; gap: 2px; }
+.service-time-day { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; color: var(--coral); text-transform: uppercase; }
+.service-time-time { font-size: 15px; font-weight: 700; color: var(--navy); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 700px) {
+  #page-leadership .container > div[style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; }
+  #page-leadership div[style*="grid-template-columns:repeat(2,1fr)"] { grid-template-columns: 1fr !important; }
+  #page-leadership div[style*="grid-template-columns:160px"] { grid-template-columns: 1fr !important; }
+  #page-leadership div[style*="min-height:420px"] { min-height: 280px !important; }
+
+ .nav-links { display: none; }
+ .nav-hamburger { display: flex; }
+ .pillars { grid-template-columns: 1fr; }
+ .sermons-grid { grid-template-columns: 1fr; }
+ .visit-grid { grid-template-columns: 1fr; }
+ .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+ .give-banner { flex-direction: column; text-align: center; }
+ .media-grid { grid-template-columns: 1fr; }
+ .contact-grid { grid-template-columns: 1fr; }
+ .form-row { grid-template-columns: 1fr; }
+ .event-date-badge { position: static; transform: none; margin-top: 16px; display: inline-block; }
+ .event-banner { text-align: center; display: flex; flex-direction: column; align-items: center; }
+ .event-details { padding: 24px; }
+ .event-highlights { grid-template-columns: 1fr; }
+ .initiative-card { grid-template-columns: 4px 1fr; }
+ .spotify-btn { margin-left: 0; }
+}
+@media (min-width: 700px) {
+ .initiative-cards { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+ <a class="nav-logo" href="#" onclick="showPage('home')">
+ <div class="nav-logo-arc"><span>R</span></div>
+ <div class="nav-logo-text">Rig Church <small>Miami</small></div>
+ </a>
+ <div class="nav-links">
+ <a onclick="showPage('home')" id="nav-home" class="active">Home</a>
+ <a onclick="showPage('leadership')" id="nav-leadership">Leadership</a>
+ <a onclick="showPage('legacy')" id="nav-legacy">Legacy</a>
+ <a onclick="showPage('events')" id="nav-events">Events</a>
+ <a onclick="showPage('media')" id="nav-media">Media</a>
+ <a onclick="showPage('contact')" id="nav-contact">Contact</a>
+ <a href="https://subsplash.com/u/rigglobalmiami/give" target="_blank" class="nav-cta">Give</a>
+ </div>
+ <div class="nav-hamburger" onclick="toggleMenu()" id="hamburger">
+ <span></span><span></span><span></span>
+ </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+ <a onclick="showPage('home');toggleMenu()">Home</a>
+ <a onclick="showPage('leadership');toggleMenu()">Leadership</a>
+ <a onclick="showPage('legacy');toggleMenu()">Legacy</a>
+ <a onclick="showPage('events');toggleMenu()">Events</a>
+ <a onclick="showPage('media');toggleMenu()">Media</a>
+ <a onclick="showPage('contact');toggleMenu()">Contact</a>
+ <a href="https://subsplash.com/u/rigglobalmiami/give" target="_blank">Give</a>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- HOME PAGE -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="page active" id="page-home">
+
+ <!-- HERO -->
+ <section class="hero">
+ <div class="hero-bg"></div>
+ <div class="hero-pattern"></div>
+ <div class="hero-accent"></div>
+ <div class="hero-content">
+ <div class="hero-eyebrow">North Miami, FL</div>
+ <h1 class="hero-title">God Still <em>Speaks</em></h1>
+ <p class="hero-subtitle">A community of believers building something real - in North Miami and beyond. You belong here.</p>
+ <div class="hero-actions">
+ <a class="btn-primary" onclick="showPage('events')">Plan a Visit →</a>
+ <a class="btn-outline" onclick="showPage('media')">Watch Sermons</a>
+ </div>
+ </div>
+ </section>
+
+ <!-- INFO BAR -->
+ <div class="info-bar">
+ <div class="info-item">
+ <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+ <span><strong>Sundays</strong> · 10:00 AM</span>
+ </div>
+ <div class="info-sep"></div>
+ <div class="info-item">
+ <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+ <span>12355 NE 13th Ave, North Miami, FL 33161</span>
+ </div>
+ <div class="info-sep"></div>
+ <div class="info-item">
+ <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+ <span>(754) 233-0565</span>
+ </div>
+ </div>
+
+ <!-- ABOUT -->
+ <section class="section section-alt">
+ <div class="container">
+ <div class="section-label">Who We Are</div>
+ <h2 class="section-title">Built on Three<br>Core Commitments</h2>
+ <p class="section-subtitle">Rig Church Miami exists to connect people to God, to each other, and to the mission of transforming our community.</p>
+ <div class="pillars">
+ <div class="pillar">
+ <div class="pillar-icon"></div>
+ <h3>Believe</h3>
+ <p>A faith that's more than Sunday - it's a foundation that shapes every decision, relationship, and pursuit.</p>
+ </div>
+ <div class="pillar">
+ <div class="pillar-icon"></div>
+ <h3>Belong</h3>
+ <p>No perfect people required. This is a community built for the real, the searching, and the ready.</p>
+ </div>
+ <div class="pillar">
+ <div class="pillar-icon">️</div>
+ <h3>Build</h3>
+ <p>We're not just a church - we're building something in North Miami. Legacy. Impact. A better future.</p>
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <!-- RECENT SERMONS (preview) -->
+ <section class="section">
+ <div class="container">
+ <div class="section-label">From the Pulpit</div>
+ <h2 class="section-title">Recent Messages</h2>
+ <div class="sermons-grid">
+ <a class="sermon-card" href="https://www.youtube.com/live/NKow8NBgpPE" target="_blank" style="text-decoration:none;display:block;color:inherit;">
+ <div class="sermon-thumb" style="background:url('https://img.youtube.com/vi/NKow8NBgpPE/hqdefault.jpg') center/cover no-repeat;">
+ <div class="play-btn"></div>
+ </div>
+ <div class="sermon-info">
+ <div class="sermon-title">New Year's Eve Service</div>
+ <div class="sermon-meta">Rig Church Miami · Watch on YouTube</div>
+ </div>
+ </a>
+ <a class="sermon-card" href="https://www.youtube.com/live/RlASBoitMvo" target="_blank" style="text-decoration:none;display:block;color:inherit;">
+ <div class="sermon-thumb" style="background:url('https://img.youtube.com/vi/RlASBoitMvo/hqdefault.jpg') center/cover no-repeat;">
+ <div class="play-btn"></div>
+ </div>
+ <div class="sermon-info">
+ <div class="sermon-title">Christmas Service</div>
+ <div class="sermon-meta">Rig Church Miami · Watch on YouTube</div>
+ </div>
+ </a>
+ </div>
+ <div style="margin-top:24px;text-align:center;">
+ <a class="btn-primary" onclick="showPage('media')">View All Messages →</a>
+ </div>
+ </div>
+ </section>
+
+ <!-- GIVE BANNER -->
+ <section class="section">
+ <div class="container">
+ <div class="give-banner">
+ <div>
+ <h2>Partner with the Mission</h2>
+ <p>Your generosity directly funds ministry, community programs, and the next generation. Every gift makes an impact in North Miami.</p>
+ </div>
+ <a href="https://subsplash.com/u/rigglobalmiami/give" target="_blank" class="btn-primary" style="white-space:nowrap;font-size:14px;">Give Now →</a>
+ </div>
+ </div>
+ </section>
+
+ <!-- FOOTER -->
+ <footer class="footer">
+ <div class="container">
+ <div class="footer-grid">
+ <div>
+ <h4>Rig Church Miami</h4>
+ <p>A Spirit-filled community in North Miami, FL committed to faith, family, and the flourishing of our city.</p>
+ <p style="margin-top:12px;">Part of the Rig Church global family.</p>
+ </div>
+ <div>
+ <h4>Quick Links</h4>
+ <a onclick="showPage('legacy')" style="cursor:pointer;">Legacy Ministry</a>
+ <a onclick="showPage('events')" style="cursor:pointer;">Events</a>
+ <a onclick="showPage('media')" style="cursor:pointer;">Media</a>
+ <a href="https://subsplash.com/u/rigglobalmiami/give" target="_blank">Give</a>
+ </div>
+ <div>
+ <h4>Connect</h4>
+ <a href="tel:7542330565">(754) 233-0565</a>
+ <a href="mailto:info@rigglobalmiami.com">info@rigglobalmiami.com</a>
+ <p>12355 NE 13th Ave<br>Unit #403–404<br>North Miami, FL 33161</p>
+ </div>
+ </div>
+ <div class="footer-bottom">
+ <span>© 2026 Rig Church Miami. All rights reserved.</span>
+ <span>Sundays · 10:00 AM</span>
+ </div>
+ </div>
+ </footer>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- LEGACY PAGE -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="page" id="page-legacy">
+ <div class="legacy-hero">
+ <div class="section-label" style="color:#ff8a65;">Community Impact</div>
+ <h1>Legacy Ministry</h1>
+ <p>From North Miami and beyond - investing in people, partnerships, and programs that build a lasting future.</p>
+ </div>
+
+ <section class="section">
+ <div class="container">
+ <div class="section-label">Active Initiatives</div>
+ <h2 class="section-title">What We're Building</h2>
+ <p class="section-subtitle">Every initiative is an extension of our call to be Kings and Priests - people who don't just occupy space, but transform it.</p>
+
+ <div class="initiative-cards">
+
+ <!-- Back to School -->
+ <div class="initiative-card">
+ <div class="initiative-accent active"></div>
+ <div class="initiative-body">
+ <div class="initiative-tag active">
+ <span>●</span> Active Initiative
+ </div>
+ <h3>Back to School Backpack Project</h3>
+ <p>We are collecting and distributing fully stocked backpacks for children in our community ahead of the new school year. Every child who walks into a classroom prepared is a child set up to succeed. Donations of backpacks, school supplies, and funds are welcomed - and volunteers are needed to help pack and distribute.</p>
+ <a href="https://subsplash.com/u/rigglobalmiami/give?frequency=once&next_process_date=04/09/2026&fund_id=416f7ba9-1b3d-466f-8567-d28d028ed030" target="_blank" class="btn-primary">Donate or Volunteer →</a>
+ </div>
+ </div>
+
+ <!-- Children's Learning Center -->
+ <div class="initiative-card">
+ <div class="initiative-accent coming"></div>
+ <div class="initiative-body">
+ <div class="initiative-tag coming">
+ <span>◆</span> Coming Soon
+ </div>
+ <h3>Children's Learning Center Expansion</h3>
+ <p>Rig Church Miami is expanding its Children's Learning Center to serve more families with quality early education, tutoring, and development programs. This is one of our most significant investments in the next generation - and we are looking for partners who share that vision.</p>
+ <a href="https://subsplash.com/u/rigglobalmiami/give?frequency=once&next_process_date=04/09/2026&fund_id=416f7ba9-1b3d-466f-8567-d28d028ed030" target="_blank" class="btn-primary">Support the Expansion →</a>
+ </div>
+ </div>
+
+ </div>
+
+ <div class="legacy-quote">
+ <blockquote>"We were not created to merely survive the systems of this world - we were called to reign within them."</blockquote>
+ <cite>- Pastor Elijah Colas · Rig Church Miami</cite>
+ </div>
+
+ <div style="margin-top:56px;text-align:center;">
+ <div class="section-label">Partner with the Mission</div>
+ <h2 class="section-title" style="margin-bottom:16px;">Your Investment<br>Changes Lives</h2>
+ <p class="section-subtitle" style="margin:0 auto 28px;">From anywhere in the country, your support directly funds programs, partnerships, and people transforming North Miami and beyond.</p>
+ <a href="https://subsplash.com/u/rigglobalmiami/give" target="_blank" class="btn-primary" style="font-size:14px;padding:14px 32px;">Become a Donor →</a>
+ </div>
+ </div>
+ </section>
+
+ <!-- FOOTER -->
+ <footer class="footer">
+ <div class="container">
+ <div class="footer-grid">
+ <div>
+ <h4>Rig Church Miami</h4>
+ <p>A Spirit-filled community in North Miami, FL committed to faith, family, and the flourishing of our city.</p>
+ </div>
+ <div>
+ <h4>Quick Links</h4>
+ <a onclick="showPage('home')" style="cursor:pointer;">Home</a>
+ <a onclick="showPage('events')" style="cursor:pointer;">Events</a>
+ <a onclick="showPage('media')" style="cursor:pointer;">Media</a>
+ <a href="https://subsplash.com/u/rigglobalmiami/give" target="_blank">Give</a>
+ </div>
+ <div>
+ <h4>Connect</h4>
+ <a href="tel:7542330565">(754) 233-0565</a>
+ <a href="mailto:info@rigglobalmiami.com">info@rigglobalmiami.com</a>
+ <p>12355 NE 13th Ave, Unit #403–404<br>North Miami, FL 33161</p>
+ </div>
+ </div>
+ <div class="footer-bottom">
+ <span>© 2026 Rig Church Miami. All rights reserved.</span>
+ <span>Sundays · 10:00 AM</span>
+ </div>
+ </div>
+ </footer>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- EVENTS PAGE -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="page" id="page-events">
+ <div class="events-hero">
+ <div class="section-label" style="color:#ff8a65;">What's Coming</div>
+ <h1>Upcoming Events</h1>
+ <p>Gatherings designed to connect, equip, and inspire. Come experience community at Rig Church Miami.</p>
+ </div>
+
+ <section class="section">
+ <div class="container">
+ <div class="events-grid">
+
+ <!-- Virtuous Woman Summit -->
+ <div class="event-featured">
+ <div class="event-banner">
+ <div class="event-banner-label">Rig Church Miami Presents</div>
+ <div class="event-banner-title">The Virtuous<br>Woman Summit</div>
+ <div class="event-banner-sub">A gathering for women of faith, purpose &amp; influence</div>
+ <div class="event-date-badge">
+ <div class="event-date-month">July 2026</div>
+ <div class="event-date-days">17–19</div>
+ <div class="event-date-year">3 Days</div>
+ </div>
+ </div>
+ <div class="event-details">
+ <div class="event-meta-row">
+ <div class="event-meta-item">
+ <svg width="16" height="16" fill="none" stroke="#E05A35" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+ <span>July 17–19, 2026</span>
+ </div>
+ <div class="event-meta-item">
+ <svg width="16" height="16" fill="none" stroke="#E05A35" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+ <span>North Miami, FL</span>
+ </div>
+ <div class="event-meta-item">
+ <svg width="16" height="16" fill="none" stroke="#E05A35" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+ <span>Women of All Ages Welcome</span>
+ </div>
+ </div>
+ <p class="event-description">A transformative three-day gathering for women of faith, purpose, and influence. Come ready for worship, wisdom, and real connection - whether you're a leader, entrepreneur, or simply someone hungry for more. This is your invitation to step into everything God has called you to be.</p>
+ <div class="event-highlights">
+ <div class="event-highlight">
+ <div class="icon"></div>
+ <span>Spirit-Led Worship</span>
+ </div>
+ <div class="event-highlight">
+ <div class="icon">️</div>
+ <span>Keynote Sessions</span>
+ </div>
+ <div class="event-highlight">
+ <div class="icon"></div>
+ <span>Community &amp; Connection</span>
+ </div>
+ </div>
+ <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;">
+ <span style="display:inline-block;background:var(--navy);color:white;padding:14px 28px;border-radius:8px;font-size:13px;font-weight:700;letter-spacing:0.5px;">Registration Opening Soon</span>
+ <a href="https://www.instagram.com/virtuouswomansummit" target="_blank" class="btn-outline" style="color:var(--navy);border-color:var(--border);">Get More Info</a>
+ </div>
+ </div>
+ </div>
+
+ </div>
+
+ <!-- Sunday Service CTA -->
+ <div style="margin-top:48px;background:var(--cream);border-radius:16px;padding:40px;text-align:center;border:1px solid var(--border);">
+ <div class="section-label">Every Week</div>
+ <h2 class="section-title" style="margin-bottom:12px;">Sunday Service</h2>
+ <p class="section-subtitle" style="margin:0 auto 24px;">Join us every Sunday at 10:00 AM for worship, community, and a word that moves you. First time? We can't wait to meet you.</p>
+ <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+ <a onclick="showPage('contact')" class="btn-primary" style="cursor:pointer;">Plan Your Visit →</a>
+ <a href="https://maps.google.com/?q=12355+NE+13th+Ave+North+Miami+FL" target="_blank" class="btn-outline" style="color:var(--navy);border-color:var(--border);">Get Directions</a>
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <!-- FOOTER -->
+ <footer class="footer">
+ <div class="container">
+ <div class="footer-grid">
+ <div>
+ <h4>Rig Church Miami</h4>
+ <p>A Spirit-filled community in North Miami, FL committed to faith, family, and the flourishing of our city.</p>
+ </div>
+ <div>
+ <h4>Quick Links</h4>
+ <a onclick="showPage('home')" style="cursor:pointer;">Home</a>
+ <a onclick="showPage('legacy')" style="cursor:pointer;">Legacy</a>
+ <a onclick="showPage('media')" style="cursor:pointer;">Media</a>
+ <a href="https://subsplash.com/u/rigglobalmiami/give" target="_blank">Give</a>
+ </div>
+ <div>
+ <h4>Connect</h4>
+ <a href="tel:7542330565">(754) 233-0565</a>
+ <a href="mailto:info@rigglobalmiami.com">info@rigglobalmiami.com</a>
+ <p>12355 NE 13th Ave, Unit #403–404<br>North Miami, FL 33161</p>
+ </div>
+ </div>
+ <div class="footer-bottom">
+ <span>© 2026 Rig Church Miami. All rights reserved.</span>
+ <span>Sundays · 10:00 AM</span>
+ </div>
+ </div>
+ </footer>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- MEDIA PAGE -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="page" id="page-media">
+ <div class="media-hero">
+ <div class="section-label" style="color:#ff8a65;">Watch &amp; Listen</div>
+ <h1>Sermons &amp; Media</h1>
+ <p>Messages that meet you where you are. Watch, listen, and share what God is speaking through Rig Church Miami.</p>
+ </div>
+
+ <section class="section">
+ <div class="container">
+ <div class="section-label">Latest Messages</div>
+ <h2 class="section-title">Recent Sermons</h2>
+
+ <div class="media-grid">
+ <a class="media-card" href="https://www.youtube.com/live/NKow8NBgpPE" target="_blank" style="text-decoration:none;color:inherit;">
+ <div class="media-thumb" style="background:url('https://img.youtube.com/vi/NKow8NBgpPE/hqdefault.jpg') center/cover no-repeat;">
+ <div class="media-play"></div>
+ </div>
+ <div class="media-info">
+ <div class="media-title">New Year's Eve Service</div>
+ <div class="media-meta">Rig Church Miami · Watch on YouTube</div>
+ </div>
+ </a>
+ <a class="media-card" href="https://www.youtube.com/live/RlASBoitMvo" target="_blank" style="text-decoration:none;color:inherit;">
+ <div class="media-thumb" style="background:url('https://img.youtube.com/vi/RlASBoitMvo/hqdefault.jpg') center/cover no-repeat;">
+ <div class="media-play"></div>
+ </div>
+ <div class="media-info">
+ <div class="media-title">Christmas Service</div>
+ <div class="media-meta">Rig Church Miami · Watch on YouTube</div>
+ </div>
+ </a>
+ <a class="media-card" href="https://www.youtube.com/live/OHhnSyid2Qg" target="_blank" style="text-decoration:none;color:inherit;">
+ <div class="media-thumb" style="background:url('https://img.youtube.com/vi/OHhnSyid2Qg/hqdefault.jpg') center/cover no-repeat;">
+ <div class="media-play"></div>
+ </div>
+ <div class="media-info">
+ <div class="media-title">Kingdom Acceleration - Part 2</div>
+ <div class="media-meta">Rig Church Miami · Watch on YouTube</div>
+ </div>
+ </a>
+ <a class="media-card" href="https://www.youtube.com/live/O8vHrF70MOU" target="_blank" style="text-decoration:none;color:inherit;">
+ <div class="media-thumb" style="background:url('https://img.youtube.com/vi/O8vHrF70MOU/hqdefault.jpg') center/cover no-repeat;">
+ <div class="media-play"></div>
+ </div>
+ <div class="media-info">
+ <div class="media-title">Kingdom Acceleration - Part 1</div>
+ <div class="media-meta">Rig Church Miami · Watch on YouTube</div>
+ </div>
+ </a>
+ <a class="media-card" href="https://www.youtube.com/live/HBQReigkmaw" target="_blank" style="text-decoration:none;color:inherit;">
+ <div class="media-thumb" style="background:url('https://img.youtube.com/vi/HBQReigkmaw/hqdefault.jpg') center/cover no-repeat;">
+ <div class="media-play"></div>
+ </div>
+ <div class="media-info">
+ <div class="media-title">Anniversary Sunday Service</div>
+ <div class="media-meta">Rig Church Miami · Watch on YouTube</div>
+ </div>
+ </a>
+ <a class="media-card" href="https://www.youtube.com/live/ImPpg53Z7ls" target="_blank" style="text-decoration:none;color:inherit;">
+ <div class="media-thumb" style="background:url('https://img.youtube.com/vi/ImPpg53Z7ls/hqdefault.jpg') center/cover no-repeat;">
+ <div class="media-play"></div>
+ </div>
+ <div class="media-info">
+ <div class="media-title">Anniversary Saturday Service</div>
+ <div class="media-meta">Rig Church Miami · Watch on YouTube</div>
+ </div>
+ </a>
+ </div>
+
+ <div class="spotify-banner">
+ <div class="spotify-icon">️</div>
+ <div class="spotify-text">
+ <h3>Podcast - Coming Soon</h3>
+ <p>Our sermons will be available on Spotify, Apple Podcasts, and wherever you listen. Subscribe to our email list to be the first to know when we launch.</p>
+ </div>
+ <a href="mailto:info@rigglobalmiami.com?subject=Subscribe me to the Rig Church Miami email list" class="spotify-btn">Subscribe →</a>
+ </div>
+
+ <div style="margin-top:56px;text-align:center;background:var(--cream);border-radius:16px;padding:40px;border:1px solid var(--border);">
+ <div class="section-label">Never Miss a Message</div>
+ <h2 class="section-title" style="margin-bottom:12px;">Join Us Live Every Sunday</h2>
+ <p class="section-subtitle" style="margin:0 auto 24px;">Services are streamed live every Sunday at 10:00 AM. Can't make it in person? Watch from anywhere.</p>
+ <a href="mailto:info@rigglobalmiami.com" class="btn-primary">Get the Stream Link →</a>
+ </div>
+ </div>
+ </section>
+
+ <!-- FOOTER -->
+ <footer class="footer">
+ <div class="container">
+ <div class="footer-grid">
+ <div>
+ <h4>Rig Church Miami</h4>
+ <p>A Spirit-filled community in North Miami, FL committed to faith, family, and the flourishing of our city.</p>
+ </div>
+ <div>
+ <h4>Quick Links</h4>
+ <a onclick="showPage('home')" style="cursor:pointer;">Home</a>
+ <a onclick="showPage('legacy')" style="cursor:pointer;">Legacy</a>
+ <a onclick="showPage('events')" style="cursor:pointer;">Events</a>
+ <a href="https://subsplash.com/u/rigglobalmiami/give" target="_blank">Give</a>
+ </div>
+ <div>
+ <h4>Connect</h4>
+ <a href="tel:7542330565">(754) 233-0565</a>
+ <a href="mailto:info@rigglobalmiami.com">info@rigglobalmiami.com</a>
+ <p>12355 NE 13th Ave, Unit #403–404<br>North Miami, FL 33161</p>
+ </div>
+ </div>
+ <div class="footer-bottom">
+ <span>© 2026 Rig Church Miami. All rights reserved.</span>
+ <span>Sundays · 10:00 AM</span>
+ </div>
+ </div>
+ </footer>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- CONTACT PAGE -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="page" id="page-contact">
+ <div class="contact-hero">
+ <div class="section-label" style="color:#ff8a65;">Get in Touch</div>
+ <h1>We'd Love to<br>Hear from You</h1>
+ <p>Questions, prayer requests, or just ready to take a next step - we're here. Reach out anytime.</p>
+ </div>
+
+ <section class="section">
+ <div class="container">
+ <div class="contact-grid">
+ <!-- Info Cards -->
+ <div class="contact-info-cards">
+ <div class="contact-card">
+ <div class="contact-card-icon"></div>
+ <div>
+ <h4>Location</h4>
+ <p>12355 NE 13th Ave, Unit #403–404<br>North Miami, FL 33161</p>
+ </div>
+ </div>
+ <div class="contact-card">
+ <div class="contact-card-icon"></div>
+ <div>
+ <h4>Phone</h4>
+ <a href="tel:7542330565">(754) 233-0565</a>
+ </div>
+ </div>
+ <div class="contact-card">
+ <div class="contact-card-icon">️</div>
+ <div>
+ <h4>Email</h4>
+ <a href="mailto:info@rigglobalmiami.com">info@rigglobalmiami.com</a>
+ </div>
+ </div>
+ <div class="contact-card">
+ <div class="contact-card-icon"></div>
+ <div>
+ <h4>Sunday Services</h4>
+ <p>Every Sunday · 10:00 AM<br>All are welcome - no dress code, no pressure.</p>
+ </div>
+ </div>
+ </div>
+
+ <!-- Reach Out CTA -->
+ <div class="contact-form-wrap" style="display:flex;flex-direction:column;justify-content:center;">
+ <h3>Reach Out Directly</h3>
+ <p style="margin-bottom:28px;">We'd love to hear from you. Whether you have a question, a prayer request, or you're just ready to take a next step - don't hesitate to get in touch.</p>
+ <a href="mailto:info@rigglobalmiami.com" class="btn-primary" style="text-align:center;margin-bottom:16px;">Email Us →</a>
+ <a href="tel:7542330565" class="btn-outline" style="text-align:center;color:var(--navy);border-color:var(--border);">Call (754) 233-0565</a>
+ <p style="margin-top:24px;font-size:13px;color:var(--text-muted);line-height:1.6;">We typically respond within 24-48 hours. For urgent matters, give us a call.</p>
+ </div>
+ </div>
+
+ <!-- Map Section -->
+ <div class="contact-map-section">
+ <div class="contact-map-info">
+ <h3>Find Us in North Miami</h3>
+ <p>We're located at 12355 NE 13th Ave, Unit #403–404 in North Miami. Parking is available on site. Doors open 30 minutes before service.</p>
+ <a href="https://maps.google.com/?q=12355+NE+13th+Ave+North+Miami+FL+33161" target="_blank" class="directions-btn">
+ <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+ Get Directions
+ </a>
+ <div class="contact-service-times" style="margin-top:20px;">
+ <div class="service-time">
+ <div class="service-time-day">Sunday Service</div>
+ <div class="service-time-time">10:00 AM</div>
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <!-- FOOTER -->
+ <footer class="footer">
+ <div class="container">
+ <div class="footer-grid">
+ <div>
+ <h4>Rig Church Miami</h4>
+ <p>A Spirit-filled community in North Miami, FL committed to faith, family, and the flourishing of our city.</p>
+ </div>
+ <div>
+ <h4>Quick Links</h4>
+ <a onclick="showPage('home')" style="cursor:pointer;">Home</a>
+ <a onclick="showPage('legacy')" style="cursor:pointer;">Legacy</a>
+ <a onclick="showPage('events')" style="cursor:pointer;">Events</a>
+ <a onclick="showPage('media')" style="cursor:pointer;">Media</a>
+ </div>
+ <div>
+ <h4>Connect</h4>
+ <a href="tel:7542330565">(754) 233-0565</a>
+ <a href="mailto:info@rigglobalmiami.com">info@rigglobalmiami.com</a>
+ <p>12355 NE 13th Ave, Unit #403–404<br>North Miami, FL 33161</p>
+ </div>
+ </div>
+ <div class="footer-bottom">
+ <span>© 2026 Rig Church Miami. All rights reserved.</span>
+ <span>Sundays · 10:00 AM</span>
+ </div>
+ </div>
+ </footer>
+</div>
+
+<script>
+function showPage(name) {
+ document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+ document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+ document.getElementById('page-' + name).classList.add('active');
+ const navEl = document.getElementById('nav-' + name);
+ if (navEl) navEl.classList.add('active');
+ window.scrollTo({ top: 0, behavior: 'instant' });
+}
+
+function toggleMenu() {
+ document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+function handleFormSubmit(btn) {
+ btn.textContent = 'Message Sent ';
+ btn.style.background = '#2B3A6B';
+ btn.disabled = true;
+ setTimeout(() => {
+ btn.textContent = 'Send Message →';
+ btn.style.background = '';
+ btn.disabled = false;
+ }, 3000);
+}
+
+// Close mobile menu on outside click
+document.addEventListener('click', function(e) {
+ const menu = document.getElementById('mobileMenu');
+ const hamburger = document.getElementById('hamburger');
+ if (!menu.contains(e.target) && !hamburger.contains(e.target)) {
+ menu.classList.remove('open');
+ }
+});
+</script>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- LEADERSHIP PAGE -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="page" id="page-leadership">
+ <div style="background:linear-gradient(135deg,#0d1529 0%,#1a2548 100%);padding:80px 24px 60px;text-align:center;">
+ <div class="section-label" style="color:#ff8a65;">Meet the Team</div>
+ <h1 style="font-size:clamp(32px,7vw,56px);font-weight:900;color:white;margin-bottom:16px;letter-spacing:-1px;">Our Leadership</h1>
+ <p style="font-size:16px;color:rgba(255,255,255,0.65);max-width:480px;margin:0 auto;line-height:1.7;">Rooted in the Word and led by the Spirit. Meet the pastors and leaders who serve Rig Church Miami.</p>
+ </div>
+
+ <section class="section">
+ <div class="container">
+
+ <!-- SENIOR PASTORS - featured full width -->
+ <div style="background:var(--navy-dark);border-radius:20px;overflow:hidden;margin-bottom:40px;display:grid;grid-template-columns:1fr 1fr;">
+ <div style="position:relative;min-height:420px;overflow:hidden;">
+ <img src="images/image-1.jpg" alt="Senior Pastors Elijah and Manille Colas" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
+ </div>
+ <div style="padding:48px 40px;display:flex;flex-direction:column;justify-content:center;">
+ <div class="section-label" style="color:#ff8a65;margin-bottom:8px;">Senior Pastors</div>
+ <h2 style="font-size:clamp(24px,4vw,36px);font-weight:900;color:white;margin-bottom:4px;line-height:1.1;">Pastors Elijah</h2>
+ <h2 style="font-size:clamp(24px,4vw,36px);font-weight:900;color:white;margin-bottom:20px;line-height:1.1;">& Manille Colas</h2>
+ <p style="font-size:15px;color:rgba(255,255,255,0.65);line-height:1.7;font-weight:400;">Rooted in the Word and led by the Spirit, Pastors Elijah and Manille Colas founded Rig Church Miami with a vision to cultivate disciples who encounter God daily - to Believe in Christ, Belong in Community, and Build up the Church and City.</p>
+ </div>
+ </div>
+
+ <!-- PASTORAL TEAMS GRID -->
+ <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-bottom:40px;">
+
+ <!-- Care Pastors -->
+ <div style="background:white;border:1px solid var(--border);border-radius:16px;overflow:hidden;">
+ <div style="height:460px;overflow:hidden;">
+ <img src="images/image-2.jpg" alt="Pastors Ryan and Camille Aldophe" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
+ </div>
+ <div style="padding:24px;">
+ <div class="section-label" style="margin-bottom:6px;">Care Pastors</div>
+ <h3 style="font-size:20px;font-weight:800;color:var(--navy);margin-bottom:10px;">Pastors Ryan & Camille Aldophe</h3>
+ <p style="font-size:14px;color:var(--text-muted);line-height:1.65;font-weight:400;">The Care Department shepherds our church family, providing support, guidance, and encouragement in every season of life - through Celebrations & Crisis Care, Freedom Groups, and Counseling.</p>
+ </div>
+ </div>
+
+ <!-- Spiritual Formation Pastors -->
+ <div style="background:white;border:1px solid var(--border);border-radius:16px;overflow:hidden;">
+ <div style="height:460px;overflow:hidden;">
+ <img src="images/image-3.jpg" alt="Pastors Laurence and Kesley Smith" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
+ </div>
+ <div style="padding:24px;">
+ <div class="section-label" style="margin-bottom:6px;">Spiritual Formation Pastors</div>
+ <h3 style="font-size:20px;font-weight:800;color:var(--navy);margin-bottom:10px;">Pastors Laurence & Kesley Smith</h3>
+ <p style="font-size:14px;color:var(--text-muted);line-height:1.65;font-weight:400;">The Spiritual Formation team helps individuals grow deeper in their relationship with God - guiding our church family in hearing God's voice, walking in spiritual clarity, and maturing in faith through Prophetic One on One, Dream & Vision Submission, and Discipleship.</p>
+ </div>
+ </div>
+
+ <!-- Family & Life Pastors -->
+ <div style="background:white;border:1px solid var(--border);border-radius:16px;overflow:hidden;">
+ <div style="height:460px;overflow:hidden;">
+ <img src="images/image-4.jpg" alt="Pastors Wilson and Shantel Merantus" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
+ </div>
+ <div style="padding:24px;">
+ <div class="section-label" style="margin-bottom:6px;">Family & Life Pastors</div>
+ <h3 style="font-size:20px;font-weight:800;color:var(--navy);margin-bottom:10px;">Pastors Wilson & Shantel Merantus</h3>
+ <p style="font-size:14px;color:var(--text-muted);line-height:1.65;font-weight:400;">The Family & Life Department equips and supports every stage of life - investing in relationships, personal growth, and family discipleship through Youth, Men & Women, and Marriage ministry.</p>
+ </div>
+ </div>
+
+ <!-- Placeholder for balance -->
+ <div style="background:var(--cream);border:1px solid var(--border);border-radius:16px;display:flex;align-items:center;justify-content:center;min-height:200px;">
+ <div style="text-align:center;padding:32px;">
+ <div class="section-label" style="margin-bottom:8px;">More Coming</div>
+ <p style="font-size:14px;color:var(--text-muted);line-height:1.6;">Our team is growing. Stay connected as God continues to build Rig Church Miami.</p>
+ </div>
+ </div>
+
+ </div>
+
+ <!-- DEACONESSES - single row -->
+ <div style="margin-bottom:16px;">
+ <div class="section-label">Deaconesses</div>
+ <h2 class="section-title" style="margin-bottom:32px;">Serving the House</h2>
+ </div>
+ <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:24px;">
+
+ <div style="background:white;border:1px solid var(--border);border-radius:16px;overflow:hidden;display:grid;grid-template-columns:160px 1fr;">
+ <div style="overflow:hidden;">
+ <img src="images/image-5.jpg" alt="Deaconess Sandy Nazaire" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
+ </div>
+ <div style="padding:24px;display:flex;flex-direction:column;justify-content:center;">
+ <div class="section-label" style="margin-bottom:6px;">Deaconess</div>
+ <h3 style="font-size:18px;font-weight:800;color:var(--navy);">Sandy Nazaire</h3>
+ </div>
+ </div>
+
+ <div style="background:white;border:1px solid var(--border);border-radius:16px;overflow:hidden;display:grid;grid-template-columns:160px 1fr;">
+ <div style="overflow:hidden;">
+ <img src="images/image-6.jpg" alt="Deaconess Fedline Jean" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
+ </div>
+ <div style="padding:24px;display:flex;flex-direction:column;justify-content:center;">
+ <div class="section-label" style="margin-bottom:6px;">Deaconess</div>
+ <h3 style="font-size:18px;font-weight:800;color:var(--navy);">Fedline Jean</h3>
+ </div>
+ </div>
+
+ </div>
+
+ </div>
+ </section>
+
+ <!-- FOOTER -->
+ <footer class="footer">
+ <div class="container">
+ <div class="footer-grid">
+ <div>
+ <h4>Rig Church Miami</h4>
+ <p>A Spirit-filled community in North Miami, FL committed to faith, family, and the flourishing of our city.</p>
+ </div>
+ <div>
+ <h4>Quick Links</h4>
+ <a onclick="showPage('home')" style="cursor:pointer;">Home</a>
+ <a onclick="showPage('legacy')" style="cursor:pointer;">Legacy</a>
+ <a onclick="showPage('events')" style="cursor:pointer;">Events</a>
+ <a onclick="showPage('media')" style="cursor:pointer;">Media</a>
+ </div>
+ <div>
+ <h4>Connect</h4>
+ <a href="tel:7542330565">(754) 233-0565</a>
+ <a href="mailto:info@rigglobalmiami.com">info@rigglobalmiami.com</a>
+ <p>12355 NE 13th Ave, Unit #403-404<br>North Miami, FL 33161</p>
+ </div>
+ </div>
+ <div class="footer-bottom">
+ <span>© 2026 Rig Church Miami. All rights reserved.</span>
+ <span>Sundays · 10:00 AM</span>
+ </div>
+ </div>
+ </footer>
+</div>
+
+</body>
+</html>
